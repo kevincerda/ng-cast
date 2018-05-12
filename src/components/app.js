@@ -1,13 +1,22 @@
 angular.module('video-player')
 
   .component('app', {
-    controller: function() {
+    controller: function(youTube) {
       this.videos = window.exampleVideoData;
       this.currentVideo = this.videos[0];
       this.selectVideo = (video) => {
         console.log('selecting video', video);
         this.currentVideo = video;
       };
+      this.searchResults = (query) => {
+        youTube.search(query, (response) => {
+          if (response.data) {
+            this.videos = response.data.items;
+            this.currentVideo = response.data.items[0];
+          }
+        });
+      };
+      this.searchResults('reactjs');
     },
     template: `
       <div id="app container">
