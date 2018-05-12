@@ -2,22 +2,21 @@ angular.module('video-player')
 
   .component('videoPlayer', {
     bindings: {
+      toggle: '<',
+      autoPlay: '<',
       video: '<'
     },
     controller: function() {
-      this.embedURL = function(id) {
-        return 'https://www.youtube.com/embed/' + id;
+      this.embedURL = (id, autoPlay) => {
+        let url = 'https://www.youtube.com/embed/' + id;
+        console.log('embedURL autoPlay:', autoPlay);
+        console.log('embedUrl this.autoPlay:', this.autoPlay);
+        if (autoPlay) {
+          url += '?autoplay=1';
+        }
+        console.log('embedURL url:', url);
+        return url;
       };
     },
-    template: `
-      <div class="video-player">
-      <div class="embed-responsive embed-responsive-16by9">
-        <iframe class="embed-responsive-item" ng-src="{{ $ctrl.embedURL($ctrl.video.id.videoId) }}" allowFullScreen></iframe>
-      </div>
-      <div class="video-player-details">
-        <h3>{{$ctrl.video.snippet.title}}</h3>
-        <div>{{$ctrl.video.snippet.description}}</div>
-      </div>
-    </div>
-    `
+    templateUrl: 'src/templates/videoPlayer.html'
   });

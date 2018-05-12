@@ -10,13 +10,5 @@ angular.module('video-player')
       selectVideo: '<',
       videos: '<'
     },
-    template: `
-      <ul class="video-list">
-        <video-list-entry
-          video="video"
-          ng-click="$ctrl.onClick($index)"
-          ng-repeat="video in $ctrl.videos"><h5><em>videoListEntry</em> component goes here</h5>
-        </video-list-entry>
-      </ul>
-    `
+    templateUrl: 'src/templates/videoList.html'
   });

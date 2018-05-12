@@ -4,6 +4,11 @@ angular.module('video-player')
     controller: function(youTube) {
       this.videos = [];
       this.currentVideo = {};
+      this.autoPlay = false;
+      this.toggleAutoPlay = () => {
+        this.autoPlay = !this.autoPlay;
+        console.log('toggleAutoPlay:', this.autoPlay);
+      };
       this.selectVideo = (video) => {
         this.currentVideo = video;
       };
@@ -17,21 +22,5 @@ angular.module('video-player')
       };
       this.searchResults('reactjs');
     },
-    template: `
-      <div id="app container">
-        <nav class="navbar">
-          <div class="col-md-6 col-md-offset-3">
-            <search run-search="$ctrl.searchResults"><h5><em>search</em> component goes here</h5></search>
-          </div>
-        </nav>
-        <div class="row">
-          <div class="col-md-7">
-            <video-player ng-if="$ctrl.currentVideo" video="$ctrl.currentVideo"><h5><em>videoPlayer</em> component goes here</h5></video-player>
-          </div>
-          <div class="col-md-5">
-            <video-list select-video="$ctrl.selectVideo" videos="$ctrl.videos"><h5><em>videoList</em> component goes here</h5></video-list>
-          </div>
-        <div>
-      </div>
-    `
+    templateUrl: 'src/templates/app.html'
   });

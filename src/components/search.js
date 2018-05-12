@@ -13,14 +13,7 @@ angular.module('video-player')
         this.runSearch(this.query);
       };
     },
-    template: `
-      <div class="search-bar form-inline">
-      <input ng-model="$ctrl.query" ng-keyup="$event.keyCode == 13 && $ctrl.result()" class="form-control" type="text" />
-      <button ng-click="$ctrl.result()" class="btn">
-        <span class="glyphicon glyphicon-search"></span>
-      </button>
-    </div>
-    `
+    templateUrl: 'src/templates/search.html' 
   });
 
 //ng-model-options="{debounce: 500}" 
