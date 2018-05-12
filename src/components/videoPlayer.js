@@ -19,6 +19,5 @@ angular.module('video-player')
         <div>{{$ctrl.video.snippet.description}}</div>
       </div>
     </div>
-    {{ $ctrl.video.id.videoId | json }}
     `
   });
